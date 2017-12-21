@@ -5,6 +5,7 @@ Install
 ---
 git clone git@github.com:JesseAldridge/text_filter.git
 cd text_filter
+pip install -r requirements.txt
 ln -s $(PWD)/text_filter.py /usr/local/bin/tf
 
 Run
