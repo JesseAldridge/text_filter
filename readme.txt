@@ -1,5 +1,5 @@
-apply a filter to some text
----
+Apply a filter to some text.
+===
 
 Install
 ---
