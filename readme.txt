@@ -4,7 +4,8 @@ apply a filter to some text
 Install
 ---
 git clone git@github.com:JesseAldridge/text_filter.git
-ln -s
+cd text_filter
+ln -s $(PWD)/text_filter.py /usr/local/bin/tf
 
 Run
 ---

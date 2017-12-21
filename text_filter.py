@@ -1,9 +1,9 @@
 #!/usr/bin/python
-import sys, importlib
+import sys, importlib, os
 
 import clipboard
 
-sys.path.append('/Users/jesse_aldridge/Dropbox/text_filter')
+sys.path.append(os.path.dirname(__file__))
 
 testing = (len(sys.argv) == 1 or 'test' in sys.argv)
 mutator_name = 'tr' if testing else sys.argv[1]
