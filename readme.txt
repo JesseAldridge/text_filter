@@ -12,4 +12,4 @@ Run
 
 1. Copy some text into your clipboard
 2. Run `tf <filter_name>` (e.g. `tf tr`)
-3. Your cleaned text will be output to the console
+3. Your filtered text will be output to the console
