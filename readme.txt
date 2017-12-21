@@ -11,5 +11,5 @@ Run
 ---
 
 1. Copy some text into your clipboard
-2. Run `clean_text <filter_name>`
+2. Run `tf <filter_name>` (e.g. `tf tr`)
 3. Your cleaned text will be output to the console
