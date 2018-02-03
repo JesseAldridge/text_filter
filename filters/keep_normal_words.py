@@ -1,7 +1,8 @@
 import re
 
-def tr(line):
-  if re.search('^[a-zA-Z]', line):
+def keep_normal_words(line):
+  # Ignore dates and times
+  if re.search('[0-9]+$', line):
     return ''
 
   tokens = line.split()
@@ -13,15 +14,20 @@ def tr(line):
     if re.match(start_re, tokens[left]):
       break
 
-  right = -1
-  for right in range(left + 1, len(tokens)):
+  right = left + 1
+  while right < len(tokens):
     if re.match(stop_re, tokens[right]):
       break
+    right += 1
 
   return ' '.join(tokens[left:right])
 
 if __name__ == '__main__':
   for line, expect in [
+    (
+      'testing',
+      'testing',
+    ),
     (
       '01:58 pm #setup collect improvement notes (00:32)',
       'collect improvement notes'
@@ -51,7 +57,7 @@ if __name__ == '__main__':
       'ship PRs and talk to fede about test user',
     )
   ]:
-    actual = tr(line)
+    actual = normal_words(line)
     if expect != actual:
       print 'line:', line
       print 'expect:', expect

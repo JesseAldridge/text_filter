@@ -1,17 +1,10 @@
-01:58 pm #setup collect improvement notes (00:32)
-02:31 pm further break down non-work tasks (00:21)
-December 19th 2017
-00:39
-04:54 pm #setup mario copy -- add reasons_group_title (00:22)
-05:32 pm #setup finish mario config (00:17)
-December 18th 2017
-00:20
-11:08 am #setup bundle install not working -- provision (00:20)
-December 17th 2017
-00:10
-09:20 pm #setup wrap up experiment and post on github (00:10)
-December 16th 2017
-00:44
-02:40 pm #setup test loading all notes at once (00:12)
-02:52 pm collect improvement notes (00:22)
-11:07 pm #setup buy more baskets (00:10)
+airflow job -- talk to greg about default ruby method (00:21)
+how to know whether I already updated the time? (00:31)
+ok now that we have listing ids... (00:23)
+merge branding protection PR (00:19)
+more stuff (00:08)
+ok acceptance rate... upcoming meeting (00:16)
+ok so we will get a list of listing_ids... (00:23)
+more info (00:10)
+ok, so we will generate a json blob of select listing ids... (00:24)
+ok, airbed3_production_hostings_v01 joined with dim_listing_standards_for_select... test in superset (00:47)

@@ -11,5 +11,5 @@ ln -s $(PWD)/text_filter.py /usr/local/bin/tf
 Run
 ---
 1. Copy some text to your clipboard
-2. Run `tf <filter_name>` (e.g. `tf tr`)
+2. Run `tf <filter_name>` (e.g. `tf normal_words`)
 3. Your filtered text will be output to the console

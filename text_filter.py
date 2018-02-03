@@ -3,10 +3,11 @@ import sys, importlib, os
 
 import clipboard
 
-sys.path.append(os.path.dirname(__file__))
+filters_path = '/Users/jesse_aldridge/Dropbox/text_filter/filters'
+sys.path.append(filters_path)
 
 testing = (len(sys.argv) == 1 or 'test' in sys.argv)
-mutator_name = 'tr' if testing else sys.argv[1]
+mutator_name = 'normal_words' if testing else sys.argv[1]
 module = importlib.import_module(mutator_name)
 mutator = getattr(module, mutator_name)
 
