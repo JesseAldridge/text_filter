@@ -1,28 +1,33 @@
 import re
 
-def keep_normal_words(line):
-  # Ignore dates and times
-  if re.search('[0-9]+$', line):
-    return ''
+import base_filter_
 
-  tokens = line.split()
+class KeepNormalWords(base_filter_.BaseFilter):
+  def transform_line(self, line):
+    # Ignore dates and times
+    if re.search('[0-9]+$', line):
+      return ''
 
-  start_re = '[a-zA-Z\-]{3,}'
-  stop_re = '[^a-zA-Z\-0-9]'
+    tokens = line.split()
 
-  for left in range(len(tokens)):
-    if re.match(start_re, tokens[left]):
-      break
+    start_re = '[a-zA-Z\-]{3,}'
+    stop_re = '[^a-zA-Z\-0-9]'
 
-  right = left + 1
-  while right < len(tokens):
-    if re.match(stop_re, tokens[right]):
-      break
-    right += 1
+    for left in range(len(tokens)):
+      if re.match(start_re, tokens[left]):
+        break
 
-  return ' '.join(tokens[left:right])
+    right = left + 1
+    while right < len(tokens):
+      if re.match(stop_re, tokens[right]):
+        break
+      right += 1
+
+    return ' '.join(tokens[left:right])
 
 if __name__ == '__main__':
+  keep_normal_words = KeepNormalWords()
+
   for line, expect in [
     (
       'testing',
@@ -57,7 +62,7 @@ if __name__ == '__main__':
       'ship PRs and talk to fede about test user',
     )
   ]:
-    actual = normal_words(line)
+    actual = keep_normal_words.transform_line(line)
     if expect != actual:
       print 'line:', line
       print 'expect:', expect

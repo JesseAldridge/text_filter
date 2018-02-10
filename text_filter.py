@@ -11,7 +11,7 @@ def main():
     print 'filters:'
     for path in glob.glob(filters_path + '/*.py'):
       filename = os.path.basename(path).rsplit('.py')[0]
-      if filename == '__init__':
+      if filename.endswith('_'):
         continue
       print '  ' + filename
     return
@@ -19,14 +19,15 @@ def main():
   testing = 'test' in sys.argv
   filter_name = 'normal_words' if testing else sys.argv[1]
   module = importlib.import_module(filter_name)
-  filter_ = getattr(module, filter_name)
+  class_name = ''.join([word[0].upper() + word[1:] for word in filter_name.split('_')])
+  filter_ = getattr(module, class_name)()
 
   def each_line(text, filter_):
     in_lines = text.splitlines()
     clean_lines = []
     for line in in_lines:
-      clean_lines.append(filter_(line))
-    return '\n'.join([line for line in clean_lines if line.strip()])
+      clean_lines.append(filter_.transform_line(line))
+    return [line for line in clean_lines if line.strip()]
 
   if testing:
     with open('test.txt') as f:
@@ -34,7 +35,8 @@ def main():
   else:
     text = clipboard.paste()
 
-  print each_line(text, filter_)
+  clean_lines = each_line(text, filter_)
+  print filter_.handle_lines(clean_lines)
 
 if __name__ == '__main__':
   main()

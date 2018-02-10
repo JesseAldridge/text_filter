@@ -1,10 +1,18 @@
 import re
 
-def keep_times(line):
-  match = re.search(' \(?([0-9]+:[0-9]+)', line)
-  return match.group(1) if match else ''
+import base_filter_
+
+class KeepTimes(base_filter_.BaseFilter):
+  def transform_line(self, line):
+    match = re.search(' \(?([0-9]+:[0-9]+)', line)
+    return match.group(1) if match else ''
+
+  def handle_lines(self, lines):
+    return lines
 
 if __name__ == '__main__':
+  keep_times = KeepTimes()
+
   for line, expect in [
     (
       'follow up on stuff ~(00:32)~ (00:20)',
@@ -55,7 +63,7 @@ if __name__ == '__main__':
       '00:47'
     )
   ]:
-    actual = keep_times(line)
+    actual = keep_times.transform_line(line)
     if expect != actual:
       print 'line:', line
       print 'expect:', expect
