@@ -8,7 +8,7 @@ def main():
   sys.path.append(filters_path)
 
   if len(sys.argv) == 1:
-    print 'mutators:'
+    print 'filters:'
     for path in glob.glob(filters_path + '/*.py'):
       filename = os.path.basename(path).rsplit('.py')[0]
       if filename == '__init__':
@@ -17,15 +17,15 @@ def main():
     return
 
   testing = 'test' in sys.argv
-  mutator_name = 'normal_words' if testing else sys.argv[1]
-  module = importlib.import_module(mutator_name)
-  mutator = getattr(module, mutator_name)
+  filter_name = 'normal_words' if testing else sys.argv[1]
+  module = importlib.import_module(filter_name)
+  filter_ = getattr(module, filter_name)
 
-  def each_line(text, mutator):
+  def each_line(text, filter_):
     in_lines = text.splitlines()
     clean_lines = []
     for line in in_lines:
-      clean_lines.append(mutator(line))
+      clean_lines.append(filter_(line))
     return '\n'.join([line for line in clean_lines if line.strip()])
 
   if testing:
@@ -34,7 +34,7 @@ def main():
   else:
     text = clipboard.paste()
 
-  print each_line(text, mutator)
+  print each_line(text, filter_)
 
 if __name__ == '__main__':
   main()

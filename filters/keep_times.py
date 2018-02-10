@@ -1,11 +1,15 @@
 import re
 
 def keep_times(line):
-  match = re.search('[0-9]+:[0-9]+', line)
-  return match.group() if match else ''
+  match = re.search(' \(?([0-9]+:[0-9]+)', line)
+  return match.group(1) if match else ''
 
 if __name__ == '__main__':
   for line, expect in [
+    (
+      'follow up on stuff ~(00:32)~ (00:20)',
+      '00:20'
+    ),
     (
       '~/Dropbox/bin/sum_times.py',
       ''
